@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Fitness coaching · {{ brand }}</p>
+    <h1>Stop Guessing.<br>Start Transforming.</h1>
+    <p class="lede">I went from 90kg and junk food to a disciplined athlete. Now, I help busy professionals, parents-to-be, and athletes build sustainable strength and elite habits.</p>
+    <div class="hero-actions">
+      <a class="btn btn-yellow" href="{{ url_for('apply') }}">Book Your Free Discovery Call</a>
+      <a class="btn btn-ghost" href="{{ url_for('programs') }}">See the programs</a>
+    </div>
+    <dl class="hero-stats">
+      <div>
+        <dt>Started at</dt>
+        <dd>90kg</dd>
+      </div>
+      <div>
+        <dt>Method</dt>
+        <dd>Daily discipline</dd>
+      </div>
+      <div>
+        <dt>Result</dt>
+        <dd>A life you keep</dd>
+      </div>
+    </dl>
+  </div>
+  <div class="split-visual" aria-hidden="true">
+    <figure class="split-panel split-before">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="">
+      <figcaption>
+        <span>Then</span>
+        <strong>90kg · The grind</strong>
+      </figcaption>
+    </figure>
+    <figure class="split-panel split-after">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=80" alt="">
+      <figcaption>
+        <span>Now</span>
+        <strong>Coach · The standard</strong>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section why">
+  <div class="section-head">
+    <p class="eyebrow">The story</p>
+    <h2>From 90kg to Disciplined: I’ve Been Where You Are.</h2>
+  </div>
+  <div class="why-grid">
+    <p class="why-copy">Real change doesn’t happen overnight—it comes from showing up every day. I spent years navigating the noise of the fitness industry to find what actually works. My coaching isn't about quick fixes; it’s about building a lifestyle you can actually maintain. Whether you want to hit a powerlifting PR, recover from an injury, or lose the weight for good, I provide the roadmap. You just have to bring the discipline.</p>
+    <a class="text-link" href="{{ url_for('about') }}">Read Ankit’s journey</a>
+  </div>
+</section>
+
+<section class="section programs-preview">
+  <div class="section-head split">
+    <div>
+      <p class="eyebrow">The programs</p>
+      <h2>Pick the work that fits your life.</h2>
+    </div>
+    <a class="btn btn-ghost-dark" href="{{ url_for('programs') }}">Compare programs</a>
+  </div>
+  <div class="card-grid">
+    {% for program in programs %}
+      <article class="program-card">
+        <p class="card-eyebrow">{{ program.eyebrow }}{% if program.tag %} · {{ program.tag }}{% endif %}</p>
+        <h3>{{ program.name }}</h3>
+        <p><strong>Best for:</strong> {{ program.best_for }}</p>
+        <p class="includes-label">Includes</p>
+        <ul>
+          {% for item in program.includes %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        <a class="btn btn-yellow btn-block" href="{{ url_for('apply', program=program.slug) }}">Apply for this program</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section process">
+  <div class="section-head">
+    <p class="eyebrow">The process</p>
+    <h2>Four steps. One standard.</h2>
+  </div>
+  <ol class="process-grid">
+    {% for step in process_steps %}
+      <li>
+        <span class="step-num">{{ step.step }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.body }}</p>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<section class="cta-band">
+  <div>
+    <p class="eyebrow">Apply now</p>
+    <h2>Book your free Discovery Call.</h2>
+    <p>We map your goals, lifestyle, and hurdles — then you decide if the work is yours.</p>
+  </div>
+  <a class="btn btn-yellow" href="{{ url_for('apply') }}">Book Your Free Discovery Call</a>
+</section>
+{% endblock %}

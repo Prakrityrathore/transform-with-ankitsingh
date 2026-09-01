@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Stop Guessing. Start Transforming.{% endblock %} · transform_with_ankitsingh</title>
+  <meta name="description" content="{% block description %}Ankit Singh helps busy professionals, parents-to-be, and athletes build sustainable strength and elite habits.{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ url_for('home') }}">
+        <span class="brand-mark" aria-hidden="true">AS</span>
+        <span class="brand-text">
+          <span class="brand-handle">{{ brand }}</span>
+          <span class="brand-sub">Coaching</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="sr-only">Open menu</span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" data-nav>
+        <ul>
+          {% for item in nav_items %}
+            <li>
+              <a href="{{ url_for(item.endpoint) }}" class="{% if request.endpoint == item.endpoint %}is-active{% endif %}{% if item.endpoint == 'apply' %} nav-cta{% endif %}">
+                {{ item.label }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">{{ brand }}</p>
+        <p class="footer-tag">Sustainable strength. Elite habits. No guessing.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About Ankit</a>
+        <a href="{{ url_for('programs') }}">Programs</a>
+        <a href="{{ url_for('apply') }}">Apply Now</a>
+      </nav>
+      <div class="footer-cta">
+        <p>Ready to start?</p>
+        <a class="btn btn-yellow" href="{{ url_for('apply') }}">Book Your Free Discovery Call</a>
+      </div>
+    </div>
+    <p class="footer-copy">© {{ 2026 }} {{ coach }}. All rights reserved. · {{ brand }}</p>
+  </footer>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Programs{% endblock %}
+{% block description %}The 12-Week Transformation, VIP Coaching, and Small Group Strength with Ankit Singh.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <p class="eyebrow">Programs</p>
+  <h1>The work. The structure. The standard.</h1>
+  <p class="lede">Choose the coaching format that matches how you live and how hard you want to be held to it.</p>
+</section>
+
+<section class="section programs-page">
+  <div class="program-detail-list">
+    {% for program in programs %}
+      <article class="program-detail" id="{{ program.slug }}">
+        <div>
+          <p class="card-eyebrow">{{ program.eyebrow }}{% if program.tag %} · {{ program.tag }}{% endif %}</p>
+          <h2>{{ program.name }}</h2>
+          <p class="program-summary">{{ program.summary }}</p>
+        </div>
+        <div>
+          <p><strong>Best for:</strong> {{ program.best_for }}</p>
+          <p class="includes-label">Includes</p>
+          <ul>
+            {% for item in program.includes %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          <a class="btn btn-yellow" href="{{ url_for('apply', program=program.slug) }}">Apply for {{ program.name }}</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section process">
+  <div class="section-head">
+    <p class="eyebrow">After you apply</p>
+    <h2>How coaching actually starts.</h2>
+  </div>
+  <ol class="process-grid">
+    {% for step in process_steps %}
+      <li>
+        <span class="step-num">{{ step.step }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.body }}</p>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

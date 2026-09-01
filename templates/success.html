@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Application received{% endblock %}
+
+{% block content %}
+<section class="page-hero success-hero">
+  <p class="eyebrow">You’re in the queue</p>
+  <h1>Application received.</h1>
+  <p class="lede">I’ll review your details and reach out to lock in your free Discovery Call. Until then, keep showing up.</p>
+  <div class="hero-actions">
+    <a class="btn btn-yellow" href="{{ url_for('home') }}">Back to home</a>
+    <a class="btn btn-ghost" href="{{ url_for('programs') }}">Review programs</a>
+  </div>
+</section>
+{% endblock %}

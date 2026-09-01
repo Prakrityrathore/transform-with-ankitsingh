@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}About Ankit{% endblock %}
+{% block description %}Ankit Singh’s journey from 90kg and junk food to a disciplined athlete and coach.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <p class="eyebrow">About Ankit</p>
+  <h1>From 90kg to coach.</h1>
+  <p class="lede">I went from 90kg and junk food to a disciplined athlete. That path is the reason I coach the way I do.</p>
+</section>
+
+<section class="section story">
+  <div class="story-layout">
+    <figure class="story-visual">
+      <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f14f?auto=format&fit=crop&w=1400&q=80" alt="Athlete training with a barbell">
+    </figure>
+    <div>
+      <h2>From 90kg to Disciplined: I’ve Been Where You Are.</h2>
+      <p>Real change doesn’t happen overnight—it comes from showing up every day. I spent years navigating the noise of the fitness industry to find what actually works. My coaching isn't about quick fixes; it’s about building a lifestyle you can actually maintain. Whether you want to hit a powerlifting PR, recover from an injury, or lose the weight for good, I provide the roadmap. You just have to bring the discipline.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section who">
+  <div class="section-head">
+    <p class="eyebrow">Who I coach</p>
+    <h2>Busy lives. Serious standards.</h2>
+  </div>
+  <ul class="who-grid">
+    <li>
+      <h3>Busy professionals</h3>
+      <p>Training that respects your calendar and still moves the needle on strength, body composition, and energy.</p>
+    </li>
+    <li>
+      <h3>Parents-to-be</h3>
+      <p>Sustainable habits and smart programming so you feel strong through a season of change.</p>
+    </li>
+    <li>
+      <h3>Athletes</h3>
+      <p>Powerlifting PRs, cleaner technique, and mobility work that keeps you in the game.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="cta-band">
+  <div>
+    <p class="eyebrow">Next step</p>
+    <h2>Bring the discipline. I’ll bring the roadmap.</h2>
+  </div>
+  <a class="btn btn-yellow" href="{{ url_for('apply') }}">Book Your Free Discovery Call</a>
+</section>
+{% endblock %}
