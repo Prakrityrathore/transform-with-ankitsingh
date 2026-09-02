@@ -1,21 +1,11 @@
 from __future__ import annotations
 
-import json
-import re
-from datetime import datetime, timezone
-from pathlib import Path
-
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template
 
 app = Flask(__name__)
-app.secret_key = "transform-with-ankitsingh-local"
 
-ROOT = Path(__file__).resolve().parent
-DATA_DIR = ROOT / "data"
-LEADS_FILE = DATA_DIR / "leads.json"
-
-EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-PHONE_RE = re.compile(r"^[+\d][\d\s\-()]{7,}$")
+INSTAGRAM_HANDLE = "transform_with_ankitsingh"
+INSTAGRAM_URL = f"https://www.instagram.com/{INSTAGRAM_HANDLE}/"
 
 PROGRAMS = [
     {
@@ -59,8 +49,8 @@ PROGRAMS = [
 PROCESS = [
     {
         "step": "01",
-        "title": "The Discovery Call",
-        "body": "We discuss your goals, your lifestyle, and your hurdles.",
+        "title": "The Instagram DM",
+        "body": "Message me @transform_with_ankitsingh. We discuss your goals, your lifestyle, and your hurdles.",
     },
     {
         "step": "02",
@@ -83,34 +73,19 @@ NAV = [
     {"label": "Home", "endpoint": "home"},
     {"label": "About Ankit", "endpoint": "about"},
     {"label": "Programs", "endpoint": "programs"},
-    {"label": "Apply Now", "endpoint": "apply"},
 ]
-
-
-def load_leads() -> list[dict]:
-    if not LEADS_FILE.exists():
-        return []
-    try:
-        return json.loads(LEADS_FILE.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return []
-
-
-def save_lead(lead: dict) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    leads = load_leads()
-    leads.append(lead)
-    LEADS_FILE.write_text(json.dumps(leads, indent=2), encoding="utf-8")
 
 
 @app.context_processor
 def inject_globals():
     return {
-        "brand": "transform_with_ankitsingh",
+        "brand": INSTAGRAM_HANDLE,
         "coach": "Ankit Singh",
         "nav_items": NAV,
         "programs": PROGRAMS,
         "process_steps": PROCESS,
+        "instagram_handle": INSTAGRAM_HANDLE,
+        "instagram_url": INSTAGRAM_URL,
     }
 
 
@@ -129,58 +104,10 @@ def programs():
     return render_template("programs.html")
 
 
-@app.route("/apply", methods=["GET", "POST"])
-def apply():
-    selected = request.args.get("program", "")
-    form = {
-        "name": "",
-        "email": "",
-        "phone": "",
-        "goal": "",
-        "program": selected,
-        "lifestyle": "",
-        "message": "",
-    }
-
-    if request.method == "POST":
-        form = {key: request.form.get(key, "").strip() for key in form}
-        errors = validate_application(form)
-        if errors:
-            for error in errors:
-                flash(error, "error")
-            return render_template("apply.html", form=form), 400
-
-        save_lead(
-            {
-                **form,
-                "submitted_at": datetime.now(timezone.utc).isoformat(),
-            }
-        )
-        return redirect(url_for("success"))
-
-    return render_template("apply.html", form=form)
-
-
+@app.route("/apply")
 @app.route("/apply/success")
-def success():
-    return render_template("success.html")
-
-
-def validate_application(form: dict) -> list[str]:
-    errors: list[str] = []
-    if len(form["name"]) < 2:
-        errors.append("Please enter your full name.")
-    if not EMAIL_RE.match(form["email"]):
-        errors.append("Please enter a valid email address.")
-    if not PHONE_RE.match(form["phone"]):
-        errors.append("Please enter a valid phone number.")
-    if not form["goal"]:
-        errors.append("Please choose your primary goal.")
-    if not form["program"]:
-        errors.append("Please choose the program you are applying for.")
-    if len(form["lifestyle"]) < 12:
-        errors.append("Tell me a little about your current lifestyle so I can prepare for the call.")
-    return errors
+def apply_redirect():
+    return redirect(INSTAGRAM_URL, code=302)
 
 
 if __name__ == "__main__":
