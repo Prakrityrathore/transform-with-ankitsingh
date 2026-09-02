@@ -7,7 +7,7 @@
     <h1>Stop Guessing.<br>Start Transforming.</h1>
     <p class="lede">I went from 90kg and junk food to a disciplined athlete. Now, I help busy professionals, parents-to-be, and athletes build sustainable strength and elite habits.</p>
     <div class="hero-actions">
-      <a class="btn btn-yellow" href="{{ url_for('apply') }}">Book Your Free Discovery Call</a>
+      <a class="btn btn-yellow" href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">Contact me on Instagram</a>
       <a class="btn btn-ghost" href="{{ url_for('programs') }}">See the programs</a>
     </div>
     <dl class="hero-stats">
@@ -25,21 +25,20 @@
       </div>
     </dl>
   </div>
-  <div class="split-visual" aria-hidden="true">
-    <figure class="split-panel split-before">
-      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80" alt="">
-      <figcaption>
-        <span>Then</span>
-        <strong>90kg · The grind</strong>
-      </figcaption>
-    </figure>
-    <figure class="split-panel split-after">
-      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=80" alt="">
-      <figcaption>
-        <span>Now</span>
-        <strong>Coach · The standard</strong>
-      </figcaption>
-    </figure>
+  <div class="compare">
+    <p class="compare-tag compare-tag-before">Before</p>
+    <span class="compare-gap" aria-hidden="true"></span>
+    <p class="compare-tag compare-tag-after">After</p>
+    <div class="compare-photo compare-photo-before">
+      <img src="{{ url_for('static', filename='img/before.jpg') }}" alt="Ankit before the transformation, standing relaxed">
+    </div>
+    <div class="compare-spine" aria-hidden="true"><span>TO</span></div>
+    <div class="compare-photo compare-photo-after">
+      <img src="{{ url_for('static', filename='img/after.jpg') }}" alt="Ankit after the transformation, back double biceps pose">
+    </div>
+    <p class="compare-cap compare-cap-before">90kg · The grind</p>
+    <span class="compare-gap" aria-hidden="true"></span>
+    <p class="compare-cap compare-cap-after">Coach · The standard</p>
   </div>
 </section>
 
@@ -74,7 +73,6 @@
             <li>{{ item }}</li>
           {% endfor %}
         </ul>
-        <a class="btn btn-yellow btn-block" href="{{ url_for('apply', program=program.slug) }}">Apply for this program</a>
       </article>
     {% endfor %}
   </div>
@@ -98,10 +96,10 @@
 
 <section class="cta-band">
   <div>
-    <p class="eyebrow">Apply now</p>
-    <h2>Book your free Discovery Call.</h2>
-    <p>We map your goals, lifestyle, and hurdles — then you decide if the work is yours.</p>
+    <p class="eyebrow">Get in touch</p>
+    <h2>Contact me on Instagram.</h2>
+    <p>DM @{{ instagram_handle }} — tell me your goals, and we’ll take it from there.</p>
   </div>
-  <a class="btn btn-yellow" href="{{ url_for('apply') }}">Book Your Free Discovery Call</a>
+  <a class="btn btn-yellow" href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">@{{ instagram_handle }}</a>
 </section>
 {% endblock %}

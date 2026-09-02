@@ -11,9 +11,21 @@
 
 <section class="section story">
   <div class="story-layout">
-    <figure class="story-visual">
-      <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f14f?auto=format&fit=crop&w=1400&q=80" alt="Athlete training with a barbell">
-    </figure>
+    <div class="compare compare-on-light">
+      <p class="compare-tag compare-tag-before">Before</p>
+      <span class="compare-gap" aria-hidden="true"></span>
+      <p class="compare-tag compare-tag-after">After</p>
+      <div class="compare-photo compare-photo-before">
+        <img src="{{ url_for('static', filename='img/before.jpg') }}" alt="Ankit before the transformation, standing relaxed">
+      </div>
+      <div class="compare-spine" aria-hidden="true"><span>TO</span></div>
+      <div class="compare-photo compare-photo-after">
+        <img src="{{ url_for('static', filename='img/after.jpg') }}" alt="Ankit after the transformation, back double biceps pose">
+      </div>
+      <p class="compare-cap compare-cap-before">90kg</p>
+      <span class="compare-gap" aria-hidden="true"></span>
+      <p class="compare-cap compare-cap-after">Coach</p>
+    </div>
     <div>
       <h2>From 90kg to Disciplined: I’ve Been Where You Are.</h2>
       <p>Real change doesn’t happen overnight—it comes from showing up every day. I spent years navigating the noise of the fitness industry to find what actually works. My coaching isn't about quick fixes; it’s about building a lifestyle you can actually maintain. Whether you want to hit a powerlifting PR, recover from an injury, or lose the weight for good, I provide the roadmap. You just have to bring the discipline.</p>
@@ -47,6 +59,6 @@
     <p class="eyebrow">Next step</p>
     <h2>Bring the discipline. I’ll bring the roadmap.</h2>
   </div>
-  <a class="btn btn-yellow" href="{{ url_for('apply') }}">Book Your Free Discovery Call</a>
+  <a class="btn btn-yellow" href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">Contact me on Instagram</a>
 </section>
 {% endblock %}
