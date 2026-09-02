@@ -36,9 +36,6 @@
               </a>
             </li>
           {% endfor %}
-          <li>
-            <a class="nav-cta" href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">Instagram</a>
-          </li>
         </ul>
       </nav>
     </div>
@@ -51,19 +48,13 @@
   <footer class="site-footer">
     <div class="footer-grid">
       <div>
-        <p class="footer-brand">{{ brand }}</p>
         <p class="footer-tag">Sustainable strength. Elite habits. No guessing.</p>
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <a href="{{ url_for('home') }}">Home</a>
         <a href="{{ url_for('about') }}">About Ankit</a>
         <a href="{{ url_for('programs') }}">Programs</a>
-        <a href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">Instagram</a>
       </nav>
-      <div class="footer-cta">
-        <p>Contact me on Instagram</p>
-        <a class="btn btn-yellow" href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer">@{{ instagram_handle }}</a>
-      </div>
     </div>
     <p class="footer-copy">© {{ 2026 }} {{ coach }}. All rights reserved. · {{ brand }}</p>
   </footer>

@@ -197,12 +197,6 @@ a {
   color: var(--yellow);
 }
 
-.site-nav .nav-cta {
-  margin-left: 0.4rem;
-  background: var(--yellow);
-  color: var(--charcoal);
-}
-
 .nav-toggle {
   display: none;
   width: 44px;
@@ -623,11 +617,6 @@ a {
 
   .site-nav ul {
     flex-direction: column;
-  }
-
-  .site-nav .nav-cta {
-    margin: 0.4rem 0 0;
-    text-align: center;
   }
 
   .hero-copy {
